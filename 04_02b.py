@@ -1,7 +1,19 @@
-from collections import namedtuple
+# Calculating gain and loss
+from collections import namedtuple, defaultdict
+from pprint import pprint
+from csv import reader
 
 def main():
     #add code here
+    res = defaultdict(int)
+    with open("data/OrderItems.csv", "r") as open_csv:
+        read = reader(open_csv)
+        Item = namedtuple("Item", next(read))
+        for line in read:
+            item = Item(*line)
+            res[item.ProductID] += int(item.Quantity)
+    pprint(dict(res))
+    return
 
     return
 
